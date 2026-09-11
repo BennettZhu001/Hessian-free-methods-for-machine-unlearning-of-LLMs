@@ -1,0 +1,70 @@
+{
+  "config": {
+    "seed": 7,
+    "n_retain": 80,
+    "n_forget": 8,
+    "sequence_length": 11,
+    "vocab_size": 19,
+    "d_model": 16,
+    "d_ff": 32,
+    "training_steps": 250,
+    "learning_rate": 0.03,
+    "l2": 0.0001,
+    "damping": 0.02,
+    "cg_max_iter": 30,
+    "cg_relative_tolerance": 1e-06,
+    "unlearn_parameters": "head"
+  },
+  "dataset": {
+    "retained_sequences": 80,
+    "deleted_sequences": 8,
+    "deletion_fraction": 0.09090909090909091
+  },
+  "model": {
+    "total_parameters": 2979,
+    "updated_parameters": 323,
+    "updated_fraction": 0.10842564618999664
+  },
+  "training": {
+    "full_data": {
+      "initial_loss": 3.2319486141204834,
+      "final_loss": 0.35253944993019104,
+      "seconds": 0.6378820489999271
+    },
+    "from_scratch_retraining_reference": {
+      "initial_loss": 3.2247769832611084,
+      "final_loss": 0.3466879725456238,
+      "seconds": 0.5908163989997774
+    },
+    "unlearning_seconds": 0.012417307000760047
+  },
+  "cg": {
+    "gradient_norm": 0.1121785044670105,
+    "step_norm": 0.43863600492477417,
+    "cg_iterations": 29,
+    "initial_residual_norm": 0.1121785044670105,
+    "final_residual_norm": 1.0336624001183736e-07,
+    "cg_converged": true,
+    "cg_breakdown": false
+  },
+  "losses": {
+    "full_data_model": {
+      "retain_nll": 0.36619967222213745,
+      "forget_nll": 0.21593685448169708
+    },
+    "newton_unlearned": {
+      "retain_nll": 0.34952831268310547,
+      "forget_nll": 0.4111356735229492
+    },
+    "from_scratch_retraining_reference": {
+      "retain_nll": 0.3466879725456238,
+      "forget_nll": 13.037373542785645
+    }
+  },
+  "comparison_to_retraining": {
+    "retain_predictive_kl": 0.0049432553350925446,
+    "forget_predictive_kl": 5.609454154968262,
+    "parameter_l2_full_vs_retrained": 13.048369407653809,
+    "parameter_l2_unlearned_vs_retrained": 13.014814376831055
+  }
+}
