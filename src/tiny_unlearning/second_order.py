@@ -108,6 +108,7 @@ def damped_newton_step(
     damping: float,
     cg_max_iter: int,
     cg_relative_tolerance: float,
+    reduce_vector: Callable[[torch.Tensor], torch.Tensor] | None = None,
 ) -> NewtonResult:
     """Take one matrix-free damped Newton step on ``objective``.
 
@@ -119,7 +120,8 @@ def damped_newton_step(
     loss = objective()
     gradients = torch.autograd.grad(loss, parameters, create_graph=True)
     flat_gradient = flatten(gradients)
-    rhs = -flat_gradient.detach()
+    reducer = (lambda vector: vector) if reduce_vector is None else reduce_vector
+    rhs = -reducer(flat_gradient.detach())
 
     def matvec(vector: torch.Tensor) -> torch.Tensor:
         products = torch.autograd.grad(
@@ -128,7 +130,7 @@ def damped_newton_step(
             grad_outputs=vector,
             retain_graph=True,
         )
-        return flatten(products).detach() + damping * vector
+        return reducer(flatten(products).detach()) + damping * vector
 
     cg = conjugate_gradient(
         matvec,

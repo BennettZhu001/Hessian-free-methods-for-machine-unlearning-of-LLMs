@@ -1,0 +1,28 @@
+{
+  "seed": 7,
+  "vocab_size": 256,
+  "context_length": 64,
+  "d_model": 160,
+  "n_heads": 4,
+  "n_layers": 4,
+  "d_ff": 512,
+  "dropout": 0.0,
+  "n_retain": 2048,
+  "n_requests": 4,
+  "examples_per_request": 32,
+  "training_steps": 400,
+  "batch_size_per_gpu": 32,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "precision": "bfloat16",
+  "lora_rank": 8,
+  "lora_alpha": 16.0,
+  "curvature_examples_per_rank": 64,
+  "damping": 0.05,
+  "cg_max_iter": 20,
+  "cg_relative_tolerance": 0.00001,
+  "recovery_steps": 20,
+  "recovery_learning_rate": 0.01,
+  "train_retraining_reference": true
+}
+

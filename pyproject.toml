@@ -13,7 +13,7 @@ authors = [{name = "Bennett (Ben) Zhu"}]
 dependencies = ["torch>=2.1"]
 
 [project.optional-dependencies]
-test = ["pytest>=7.4"]
+test = ["pytest>=7.4", "ruff>=0.6"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
